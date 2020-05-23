@@ -1,3 +1,4 @@
+import 'package:eznior/internal/constants.dart';
 import 'package:eznior/ui/home/home.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,9 @@ class EzniorApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: mainFont
+      ),
       home: HomePage(),
     );
   }
