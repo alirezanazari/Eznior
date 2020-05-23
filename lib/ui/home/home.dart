@@ -17,8 +17,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             GestureDetector(
               onTap: (){},
@@ -27,15 +29,29 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.black,
                 ),
             ),
-            Spacer(),
+            SizedBox(width: 16),
             Text(
               appName ,
               style: TextStyle(
-                fontSize: 18 ,
+                color: Colors.black,
+                fontSize: 20 ,
+                fontFamily: toolbarFont
               ),
             )
           ],
         ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: GestureDetector(
+              onTap: (){},
+              child: Icon(
+                Icons.shopping_basket,
+                color: Colors.black,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
