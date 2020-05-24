@@ -1,5 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eznior/internal/constants.dart';
 import 'package:eznior/internal/wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +15,16 @@ class ShoppingTypeTile extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ImageLoader(url: image, imgRadius: 90, size: 90),
+          ImageLoader(
+              url: image,
+              imgRadius: 90,
+              height: 90,
+              width: 90,
+              isNetwork: true),
           SizedBox(height: 10),
           Text(
-            name ,
-            style: TextStyle(
-              color: Colors.grey[900],
-              fontSize: 10
-            ),
+            name,
+            style: TextStyle(color: Colors.grey[900], fontSize: 10),
           )
         ],
       ),

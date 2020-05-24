@@ -1,7 +1,7 @@
+class ShoppingType {
+  String name;
 
-class ShoppingType{
-  String name ;
-  String image ;
+  String image;
 
   ShoppingType(this.name, this.image);
 }

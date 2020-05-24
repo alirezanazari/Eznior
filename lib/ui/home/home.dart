@@ -1,6 +1,11 @@
+import 'dart:math';
+
+import 'package:eznior/data/entity/product.dart';
 import 'package:eznior/data/entity/shopping_type.dart';
+import 'package:eznior/data/repository/product_repository.dart';
 import 'package:eznior/data/repository/shopping_type_repository.dart';
 import 'package:eznior/internal/constants.dart';
+import 'package:eznior/ui/home/horizontal_list.dart';
 import 'package:eznior/ui/home/image_slider.dart';
 import 'package:eznior/ui/home/shopping_type_tile.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<ShoppingType> shoppingTypes = new List();
+  List<Product> products = new List();
 
   final List<String> sliderItems = [
     "assets/images/poster1.jpg",
@@ -23,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     shoppingTypes = FakeShoppingTypeGenerator().generate();
+    products = ProductRepository().getProducts();
   }
 
   @override
@@ -49,6 +56,26 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
+            ),
+            SizedBox(height: 20),
+            HorizontalProductList(
+              title: "Hot On Sale",
+              items: products,
+            ),
+            SizedBox(height: 20),
+            HorizontalProductList(
+              title: "Freshsales",
+              items: products.reversed.toList(),
+            ),
+            SizedBox(height: 20),
+            HorizontalProductList(
+              title: "Hot Summer",
+              items: products,
+            ),
+            SizedBox(height: 20),
+            HorizontalProductList(
+              title: "Women Dress",
+              items: products.reversed.toList(),
             )
           ],
         ),
@@ -60,10 +87,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 16),
       padding: EdgeInsets.symmetric(horizontal: 16),
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           border: Border.all(width: 1, color: Colors.grey[400])),
