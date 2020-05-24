@@ -1,7 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:eznior/data/entity/shopping_type.dart';
+import 'package:eznior/data/repository/shopping_type_repository.dart';
 import 'package:eznior/internal/constants.dart';
 import 'package:eznior/ui/home/image_slider.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:eznior/ui/home/shopping_type_tile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<ShoppingType> shoppingTypes = new List();
+
   final List<String> sliderItems = [
     "assets/images/poster1.jpg",
     "assets/images/poster2.jpg",
@@ -19,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    shoppingTypes = FakeShoppingTypeGenerator().generate();
   }
 
   @override
@@ -31,9 +35,20 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             _buildSearch(),
-            ImageSlider(
-              items: sliderItems,
-              onClick: (position , image){}
+            ImageSlider(items: sliderItems, onClick: (position, image) {}),
+            SizedBox(height: 10),
+            Container(
+              height: 150,
+              child: ListView.builder(
+                itemCount: shoppingTypes.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return ShoppingTypeTile(
+                    name: shoppingTypes[index].name,
+                    image: shoppingTypes[index].image,
+                  );
+                },
+              ),
             )
           ],
         ),
@@ -45,7 +60,10 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 16),
       padding: EdgeInsets.symmetric(horizontal: 16),
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           border: Border.all(width: 1, color: Colors.grey[400])),
@@ -110,5 +128,4 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
-
 }
