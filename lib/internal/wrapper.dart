@@ -24,7 +24,7 @@ class ImageLoader extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(imgRadius)),
         child: FadeInImage(
           fit: BoxFit.cover,
-          image: isNetwork ? NetworkImage(url) : AssetImage(url),
+          image: isNetwork ? NetworkImage(url ?? "") : AssetImage(url ?? ""),
           placeholder: AssetImage(placeHolder),
         ),
       ),

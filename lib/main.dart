@@ -10,7 +10,9 @@ class EzniorApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: mainFont
+        fontFamily: mainFont,
+        primaryColor: Colors.white,
+        accentColor: Colors.redAccent
       ),
       home: HomePage(),
     );

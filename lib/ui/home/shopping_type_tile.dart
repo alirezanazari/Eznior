@@ -6,7 +6,8 @@ class ShoppingTypeTile extends StatelessWidget {
   final String name;
   final String image;
 
-  ShoppingTypeTile({@required this.name, @required this.image});
+  ShoppingTypeTile(
+      {@required this.name, @required this.image});
 
   @override
   Widget build(BuildContext context) {

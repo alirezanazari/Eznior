@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:eznior/data/entity/product.dart';
 import 'package:eznior/data/entity/shopping_type.dart';
 import 'package:eznior/data/repository/product_repository.dart';
@@ -8,6 +6,7 @@ import 'package:eznior/internal/constants.dart';
 import 'package:eznior/ui/home/horizontal_list.dart';
 import 'package:eznior/ui/home/image_slider.dart';
 import 'package:eznior/ui/home/shopping_type_tile.dart';
+import 'package:eznior/ui/subList/product_list.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   final List<String> sliderItems = [
     "assets/images/poster1.jpg",
-    "assets/images/poster2.jpg",
     "assets/images/poster5.jpg"
   ];
 
@@ -35,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: _buildToolbar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -50,9 +49,14 @@ class _HomePageState extends State<HomePage> {
                 itemCount: shoppingTypes.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return ShoppingTypeTile(
-                    name: shoppingTypes[index].name,
-                    image: shoppingTypes[index].image,
+                  return GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListPage(index, shoppingTypes[index].name)));
+                    },
+                    child: ShoppingTypeTile(
+                      name: shoppingTypes[index].name,
+                      image: shoppingTypes[index].image,
+                    ),
                   );
                 },
               ),
