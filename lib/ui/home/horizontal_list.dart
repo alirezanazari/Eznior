@@ -1,4 +1,5 @@
 import 'package:eznior/data/entity/product.dart';
+import 'package:eznior/ui/details/details.dart';
 import 'package:eznior/ui/home/product_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,17 @@ class HorizontalProductList extends StatelessWidget {
             itemCount: items.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return ProductTile(
-                product: items[index],
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetailsPage(items[index])));
+                },
+                child: ProductTile(
+                  product: items[index],
+                ),
               );
             },
           ),
